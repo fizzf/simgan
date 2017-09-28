@@ -227,7 +227,7 @@ def adversarial_training(synthesis_eyes_dir, mpii_gaze_dir, refiner_model_path=N
     y_refined = np.array([[[0.0, 1.0]] * discriminator_model_output_shape[1]] * batch_size)
     assert y_real.shape == (batch_size, discriminator_model_output_shape[1], 2)
 
-    if not refiner_model_path:
+    if not os.path.exists(refiner_model_path):
         # we first train the Rθ network with just self-regularization loss for 1,000 steps
         print('pre-training the refiner network...')
         gen_loss = np.zeros(shape=len(refiner_model.metrics_names))
