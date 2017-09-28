@@ -1,3 +1,4 @@
+
 # SimGAN
 Keras implementation of Apple's [Learning from Simulated and Unsupervised Images through Adversarial Training](https://arxiv.org/pdf/1612.07828v1.pdf)
 
@@ -39,3 +40,7 @@ You can see a interactive Jupyter Notebook version of this script with training 
 
 ## About waya.ai
 Waya.ai is a company whose vision is a world where medical conditions are addressed early on, in their infancy. This approach will shift the health-care industry from a constant fire-fight against symptoms to a preventative approach where root causes are addressed and fixed. Our first step to make realize this vision is easy, accurate and available diagnosis. Please get in contact with me if this resonates with you!
+=======
+# simgan
+修改的simgan，王家杰同学教学用
+
