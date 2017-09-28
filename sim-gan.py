@@ -113,6 +113,18 @@ def discriminator_network(input_image_tensor):
     return layers.Reshape((-1, 2))(x)
 
 
+def save(model,savedir):
+    force_exist(savedir)
+    model.save(savedir,overwrite=True)
+
+def restore(model,savedir):
+        if not os.path.exists(savedir):
+            print('model',savedir,'not found')
+        else:
+            print('loading',savedir)
+            model.load_weights(savedir) 
+
+
 def adversarial_training(synthesis_eyes_dir, mpii_gaze_dir, refiner_model_path=None, discriminator_model_path=None):
     """Adversarial training of refiner network Rθ and discriminator network Dφ."""
     #
@@ -183,8 +195,7 @@ def adversarial_training(synthesis_eyes_dir, mpii_gaze_dir, refiner_model_path=N
     #
 
     datagen = image.ImageDataGenerator(
-        preprocessing_function=applications.xception.preprocess_input,
-        dim_ordering='tf')
+        preprocessing_function=applications.xception.preprocess_input)
 
     flow_from_directory_params = {'target_size': (img_height, img_width),
                                   'color_mode': 'grayscale' if img_channels == 1 else 'rgb',
@@ -339,6 +350,6 @@ if __name__ == '__main__':
     gaze_dir = args.gaze_dir
     refiner_model_path = args.refiner_model_path
     discriminator_model_path = args.discriminator_model_path
-    force_exist(refiner_model_path)
-    force_exist(discriminator_model_path)
+    #force_exist(refiner_model_path)
+    #force_exist(discriminator_model_path)
     main(synthesis_dir, gaze_dir, refiner_model_path, discriminator_model_path)
