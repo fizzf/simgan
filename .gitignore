@@ -1,3 +1,5 @@
+dataset/gaze/*
+dataset/synthetic/*
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

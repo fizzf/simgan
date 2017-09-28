@@ -7,12 +7,12 @@ Note: Only Python 3 support currently.
 
 import os
 import sys
-
 from keras import applications
 from keras import layers
 from keras import models
 from keras import optimizers
 from keras.preprocessing import image
+from datatrans import force_exist
 import numpy as np
 import tensorflow as tf
 
@@ -20,6 +20,16 @@ from dlutils import plot_image_batch_w_labels
 
 from utils.image_history_buffer import ImageHistoryBuffer
 
+import argparse
+parser = argparse.ArgumentParser(description='Argument parser')
+parser.add_argument('--synthesis_dir', dest='synthesis_dir', default='dataset/synthetic', help='')
+parser.add_argument('--gaze-dir', dest='gaze_dir', default='dataset/gaze', help='')
+parser.add_argument('--refiner-model-path', dest='refiner_model_path', default='model/refiner_model_path', help='')
+parser.add_argument('--discriminator-model-path', dest='discriminator_model_path', default='model/discriminator_model_path', help='')
+parser.add_argument('--height',dest='height',type=int, default=35, help='')
+parser.add_argument('--width',dest='width',type=int, default=55, help='')
+#parser.add_argument('--cache', dest='cache', action='store_true', help='')
+args = parser.parse_args()
 
 #
 # directories
@@ -32,8 +42,8 @@ cache_dir = os.path.join(path, 'cache')
 # image dimensions
 #
 
-img_width = 55
-img_height = 35
+img_width = args.width
+img_height = args.height
 img_channels = 1
 
 #
@@ -325,7 +335,10 @@ def main(synthesis_eyes_dir, mpii_gaze_dir, refiner_model_path, discriminator_mo
 
 if __name__ == '__main__':
     # TODO: if pre-trained models are passed in, we don't take the steps they've been trained for into account
-    refiner_model_path = sys.argv[3] if len(sys.argv) >= 4 else None
-    discriminator_model_path = sys.argv[4] if len(sys.argv) >= 5 else None
-
-    main(sys.argv[1], sys.argv[2], refiner_model_path, discriminator_model_path)
+    synthesis_dir = args.synthesis_dir
+    gaze_dir = args.gaze_dir
+    refiner_model_path = args.refiner_model_path
+    discriminator_model_path = args.discriminator_model_path
+    force_exist(refiner_model_path)
+    force_exist(discriminator_model_path)
+    main(synthesis_dir, gaze_dir, refiner_model_path, discriminator_model_path)

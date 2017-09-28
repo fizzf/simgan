@@ -1,0 +1,1 @@
+find . | grep png | xargs -n1 -i mv {} ./
