@@ -1,21 +1,17 @@
+# simgan
+修改的simgan，王家杰同学教学用
+
+
+
 
 # SimGAN
 Keras implementation of Apple's [Learning from Simulated and Unsupervised Images through Adversarial Training](https://arxiv.org/pdf/1612.07828v1.pdf)
 
 ## Running
 
-Install dlutils from https://github.com/wayaai/deep-learning-utils:
 
-> $ pip install -U git+https://github.com/wayaai/deep-learning-utils.git  
-
-or  
-
-> $ git clone https://github.com/wayaai/deep-learning-utils.git  
-> $ python setup.py install develop
-
-
-```python
-python3 sim-gan.py PATH_TO_SYNTHESEYES_DATASET PATH_TO_MPII_GAZE_DATASET
+```python see help information
+python3 sim-gan.py -h
 ```
 
 In apple's paper they use [Unity Eyes](http://www.cl.cam.ac.uk/research/rainbow/projects/unityeyes/) to generate ~1.2 million synthetic images. I am on mac though so I just used the easily available [SynthesEyes Dataset](https://www.cl.cam.ac.uk/research/rainbow/projects/syntheseyes/). This is small (only around ~11,000 images) so it would be much better if someone could generate a larger dataset w/ [Unity Eyes](http://www.cl.cam.ac.uk/research/rainbow/projects/unityeyes/) and share it on s3.
@@ -41,6 +37,5 @@ You can see a interactive Jupyter Notebook version of this script with training 
 ## About waya.ai
 Waya.ai is a company whose vision is a world where medical conditions are addressed early on, in their infancy. This approach will shift the health-care industry from a constant fire-fight against symptoms to a preventative approach where root causes are addressed and fixed. Our first step to make realize this vision is easy, accurate and available diagnosis. Please get in contact with me if this resonates with you!
 =======
-# simgan
-修改的simgan，王家杰同学教学用
+
 
